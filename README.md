@@ -65,29 +65,31 @@ public class CompoundInterestCalculator {
         System.out.printf("Total money after %d years: $%,.2f%n", years, finalBalance);
     }
 
-}```python
+```
+```python
 import numpy as np
 
-def calculate_final_balance(starting_money: float, monthly_savings: float, years: int, annual_return: float) -> float:
-    # Guardrail against invalid inputs
-    if years <= 0 or starting_money < 0 or monthly_savings < 0:
-        raise ValueError("Years must be greater than 0 and money amounts cannot be negative.")
+ --- 1. SET UP YOUR INPUTS ---
+starting_money = 1000   # $1,000 initial savings
+monthly_savings = 100   # Adding $100 every month
+years = 10              # Planning horizon
+annual_return = 0.07    # 7% expected annual return
 
-    total_months = years * 12
-    monthly_rate = annual_return / 12.0
-    months = np.arange(1, total_months + 1)
+ --- 2. DO THE FAST MATH ---
+total_months = years * 12
+monthly_rate = annual_return / 12
 
-    # Fast vectorized calculation (Zero loops)
-    growth = (1 + monthly_rate) ** months
-    monthly_balances = (starting_money * growth) + (monthly_savings * ((growth - 1) / monthly_rate))
+ Create a timeline array: [1, 2, 3 ... 120]
+months = np.arange(1, total_months + 1)
 
-    return monthly_balances[-1]
+ Calculate compound growth for all 120 months AT ONCE (Zero loops!)
+growth = (1 + monthly_rate) ** months
+final_balance = (starting_money * growth) + (monthly_savings * ((growth - 1) / monthly_rate))
 
-# Execution Example
-if __name__ == "__main__":
-    result = calculate_final_balance(1000.0, 100.0, 10, 0.07)
-    print(f"Total money after 10 years: ${result:,.2f}")
+ --- 3. SHOW THE RESULT ---
+print(f"Total money after {years} years: ${final_balance[-1]:,.2f}")
 
+```
 ---
 
 ###Step 5: Document Mechanism, Benefits, Applications & Failures
