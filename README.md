@@ -32,6 +32,7 @@ Start small with a clear, focused idea:
 
 ### Step 4: Write Your Code (Java and Python Template Example)
 
+##Java
 ```java
 public class CompoundInterestCalculator {
 
@@ -66,6 +67,7 @@ public class CompoundInterestCalculator {
     }
 
 ```
+##Python
 ```python
 import numpy as np
 
