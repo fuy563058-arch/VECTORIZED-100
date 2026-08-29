@@ -17,38 +17,51 @@ Start small with a clear, focused idea:
 
 ### Step 2: Follow the "4-Step Coding Recipe"
 1. **Doodle on paper first:** Solve the formula manually with simple numbers.
-2. **Write a simple loop:** Get a working solution using basic Python `for`/`while` loops.
+2. **Write a simple loop:** Get a working solution using basic loops (`for`/`while`).
 3. **Look for a math shortcut:** Find closed-form formulas to replace slow loops (e.g., Gauss Series Sum).
-4. **Vectorize for speed:** Swap pure Python loops for **NumPy** or **Numba** to execute at C-level speeds.
+4. **Optimize for speed:** Use array operations, primitive data types (`double[]`), or multi-threading to execute calculations as fast as possible.
 
 ---
 
 ### Step 3: Use a Free Zero-Setup Playground
-* Go to [Google Colab](https://colab.research.google.com).
-* Create a **New Notebook**.
-* Write your code and press `Shift + Enter` to test instantly.
+* Go to [OnlineGDB](https://www.onlinegdb.com/online_java_compiler) or [JDoodle](https://www.jdoodle.com/online-java-compiler).
+* Paste your Java code into the online editor.
+* Click **Run** to test and verify your results instantly without local installation.
 
 ---
 
-### Step 4: Write Your Code (Template Example)
+### Step 4: Write Your Code (Java Template Example)
 
-```python
-import numpy as np
+```java
+public class CompoundInterestCalculator {
 
-# --- 1. INPUTS ---
-starting_money = 1000   # $1,000 initial savings
-monthly_savings = 100   # $100 added monthly
-years = 10              # Investment horizon
-annual_return = 0.07    # 7% annual return
+    public static double calculateFinalBalance(double startingMoney, double monthlySavings, int years, double annualReturn) {
+        // Guardrail against invalid input values
+        if (years <= 0 || startingMoney < 0 || monthlySavings < 0) {
+            throw new IllegalArgumentException("Years must be greater than 0 and money amounts cannot be negative.");
+        }
 
-# --- 2. VECTORIZED CALCULATION ---
-total_months = years * 12
-monthly_rate = annual_return / 12
-months = np.arange(1, total_months + 1)
+        int totalMonths = years * 12;
+        double monthlyRate = annualReturn / 12.0;
+        double[] monthlyBalances = new double[totalMonths];
 
-# Zero-loop compound growth calculation
-growth = (1 + monthly_rate) ** months
-final_balance = (starting_money * growth) + (monthly_savings * ((growth - 1) / monthly_rate))
+        for (int month = 1; month <= totalMonths; month++) {
+            double growthFactor = Math.pow(1.0 + monthlyRate, month);
+            double balance = (startingMoney * growthFactor) + 
+                             (monthlySavings * ((growthFactor - 1.0) / monthlyRate));
+            monthlyBalances[month - 1] = balance;
+        }
 
-# --- 3. OUTPUT ---
-print(f"Total money after {years} years: ${final_balance[-1]:,.2f}")
+        return monthlyBalances[totalMonths - 1];
+    }
+
+    public static void main(String[] args) {
+        double startingMoney = 1000.0;
+        double monthlySavings = 100.0;
+        int years = 10;
+        double annualReturn = 0.07;
+
+        double finalBalance = calculateFinalBalance(startingMoney, monthlySavings, years, annualReturn);
+        System.out.printf("Total money after %d years: $%,.2f%n", years, finalBalance);
+    }
+}
