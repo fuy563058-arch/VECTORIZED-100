@@ -30,7 +30,7 @@ Start small with a clear, focused idea:
 
 ---
 
-### Step 4: Write Your Code (Java Template Example)
+### Step 4: Write Your Code (Java and Python Template Example)
 
 ```java
 public class CompoundInterestCalculator {
@@ -64,4 +64,39 @@ public class CompoundInterestCalculator {
         double finalBalance = calculateFinalBalance(startingMoney, monthlySavings, years, annualReturn);
         System.out.printf("Total money after %d years: $%,.2f%n", years, finalBalance);
     }
-}
+
+}```python
+import numpy as np
+
+def calculate_final_balance(starting_money: float, monthly_savings: float, years: int, annual_return: float) -> float:
+    # Guardrail against invalid inputs
+    if years <= 0 or starting_money < 0 or monthly_savings < 0:
+        raise ValueError("Years must be greater than 0 and money amounts cannot be negative.")
+
+    total_months = years * 12
+    monthly_rate = annual_return / 12.0
+    months = np.arange(1, total_months + 1)
+
+    # Fast vectorized calculation (Zero loops)
+    growth = (1 + monthly_rate) ** months
+    monthly_balances = (starting_money * growth) + (monthly_savings * ((growth - 1) / monthly_rate))
+
+    return monthly_balances[-1]
+
+# Execution Example
+if __name__ == "__main__":
+    result = calculate_final_balance(1000.0, 100.0, 10, 0.07)
+    print(f"Total money after 10 years: ${result:,.2f}")
+
+---
+
+###Step 5: Document Mechanism, Benefits, Applications & Failures
+Always include a complete 4-part breakdown below your code:
+
+How the Code Works (Mechanism): Explain step-by-step how variables, loops, and methods like Math.pow() execute.
+
+Why This Method is Important (Benefit): Highlight performance considerations (e.g., using primitive arrays double[] for minimal memory overhead and fast CPU execution).
+
+Where You Can Use This (Applications): List practical real-world use cases (e.g., enterprise banking systems, Android apps, backend financial services).
+
+Edge Cases & Guardrails (Failures & Testing): Define inputs that break the math (e.g., negative years, zero interest rates), add input validations (if (years <= 0) throw new IllegalArgumentException(...)), and write unit tests (e.g., using JUnit).
