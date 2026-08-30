@@ -1,5 +1,5 @@
 # VECTORIZED 100: The Zero-Loop Engine
-> A High-Performance Framework for Fast Calculations, Vectorized Patterns, and Production-Grade Math.
+> A High-Performance Framework for Fast Calculations, Vectorized Patterns, and Production-Grade Math (Python & Java Edition).
 
 ---
 
@@ -19,20 +19,20 @@ Start small with a clear, focused idea:
 1. **Doodle on paper first:** Solve the formula manually with simple numbers.
 2. **Write a simple loop:** Get a working solution using basic loops (`for`/`while`).
 3. **Look for a math shortcut:** Find closed-form formulas to replace slow loops (e.g., Gauss Series Sum).
-4. **Optimize for speed:** Use array operations, primitive data types (`double[]`), or multi-threading to execute calculations as fast as possible.
+4. **Optimize for speed:** Use array operations, primitive data types, or vectorization (**NumPy** in Python, `double[]` in Java) to execute calculations as fast as possible.
 
 ---
 
 ### Step 3: Use a Free Zero-Setup Playground
-* Go to [OnlineGDB](https://www.onlinegdb.com/online_java_compiler) or [JDoodle](https://www.jdoodle.com/online-java-compiler).
-* Paste your Java code into the online editor.
-* Click **Run** to test and verify your results instantly without local installation.
+* **Python:** Go to [Google Colab](https://colab.research.google.com).
+* **Java:** Go to [OnlineGDB](https://www.onlinegdb.com/online_java_compiler) or [JDoodle](https://www.jdoodle.com/online-java-compiler).
+* Paste your code and run it instantly without local software installation.
 
 ---
 
-### Step 4: Write Your Code (Java and Python Template Example)
+### Step 4: Write Your Code (Java & Python Templates)
 
-## Java
+#### Java Implementation
 ```java
 public class CompoundInterestCalculator {
 
@@ -65,42 +65,4 @@ public class CompoundInterestCalculator {
         double finalBalance = calculateFinalBalance(startingMoney, monthlySavings, years, annualReturn);
         System.out.printf("Total money after %d years: $%,.2f%n", years, finalBalance);
     }
-
-```
-## Python
-```python
-import numpy as np
-
- --- 1. SET UP YOUR INPUTS ---
-starting_money = 1000   # $1,000 initial savings
-monthly_savings = 100   # Adding $100 every month
-years = 10              # Planning horizon
-annual_return = 0.07    # 7% expected annual return
-
- --- 2. DO THE FAST MATH ---
-total_months = years * 12
-monthly_rate = annual_return / 12
-
- Create a timeline array: [1, 2, 3 ... 120]
-months = np.arange(1, total_months + 1)
-
- Calculate compound growth for all 120 months AT ONCE (Zero loops!)
-growth = (1 + monthly_rate) ** months
-final_balance = (starting_money * growth) + (monthly_savings * ((growth - 1) / monthly_rate))
-
- --- 3. SHOW THE RESULT ---
-print(f"Total money after {years} years: ${final_balance[-1]:,.2f}")
-
-```
----
-
-###Step 5: Document Mechanism, Benefits, Applications & Failures
-Always include a complete 4-part breakdown below your code:
-
-How the Code Works (Mechanism): Explain step-by-step how variables, loops, and methods like Math.pow() execute.
-
-Why This Method is Important (Benefit): Highlight performance considerations (e.g., using primitive arrays double[] for minimal memory overhead and fast CPU execution).
-
-Where You Can Use This (Applications): List practical real-world use cases (e.g., enterprise banking systems, Android apps, backend financial services).
-
-Edge Cases & Guardrails (Failures & Testing): Define inputs that break the math (e.g., negative years, zero interest rates), add input validations (if (years <= 0) throw new IllegalArgumentException(...)), and write unit tests (e.g., using JUnit).
+}
