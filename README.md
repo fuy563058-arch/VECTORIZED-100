@@ -66,9 +66,9 @@ public class CompoundInterestCalculator {
         System.out.printf("Total money after %d years: $%,.2f%n", years, finalBalance);
     }
 }
-
-
+```
 ## Python implementation
+```Python
 
 import numpy as np
 
