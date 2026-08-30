@@ -67,7 +67,7 @@ public class CompoundInterestCalculator {
     }
 }
 ```
-## Python implementation
+#### Python implementation
 ```Python
 
 import numpy as np
