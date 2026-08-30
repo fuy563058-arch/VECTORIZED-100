@@ -1,6 +1,3 @@
-# VECTORIZED 100: The Zero-Loop Engine
-
-> A High-Performance Framework for Fast Calculations, Vectorized Patterns, and Production-Grade Math (Python & Java Edition).
 
 # VECTORIZED 100: The Zero-Loop Engine
 > A High-Performance Framework for Fast Calculations, Vectorized Patterns, and Production-Grade Math (Python & Java Edition).
